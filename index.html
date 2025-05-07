@@ -1,0 +1,1477 @@
+
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>Geovidenskab A – Materialesite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+:root {
+  --bg: #f4f6f8;
+  --sidebar-bg: #2c3e50;
+  --highlight: #1abc9c;
+  --text: #2c3e50;
+  --white: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.05);
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+  background-color: var(--sidebar-bg);
+  color: var(--white);
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 2em;
+}
+
+.sidebar h1 {
+  background-color: var(--highlight);
+  margin: 0;
+  padding: 1em;
+  font-size: 1.4em;
+}
+
+.sidebar a {
+  display: block;
+  padding: 0.8em 1em;
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.sidebar a:hover {
+  background-color: #16a085;
+}
+
+.main {
+  margin-left: 280px;
+  padding: 2em;
+  flex-grow: 1;
+}
+
+.chapter {
+  display: none;
+  background: var(--white);
+  padding: 2em;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px var(--shadow);
+  margin-bottom: 2em;
+}
+
+.chapter h2 {
+  color: var(--highlight);
+}
+
+.chapter .description {
+  font-style: italic;
+  margin-bottom: 1.5em;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-top: 2em;
+}
+
+.footer-columns div {
+  flex: 1;
+  min-width: 200px;
+  background-color: var(--bg);
+  border: 1px solid #ccc;
+  padding: 1em;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.footer-columns div a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.search-container {
+  margin-bottom: 2em;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.6em;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.sidebar-section {
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-section h2 {
+  margin: 0;
+  padding: 0.8em 1em;
+  font-size: 1em;
+  background-color: var(--highlight);
+  color: black;
+  cursor: pointer;
+  border-top: 1px solid #ddd;
+}
+
+.sidebar-section h2:hover {
+  background-color: #16a085;
+  color: white;
+}
+
+.sidebar-section ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+.sidebar-section ul li a {
+  display: block;
+  padding: 0.6em 1.2em;
+  text-decoration: none;
+  color: black;
+}
+
+.sidebar-section ul li a:hover {
+  background-color: #ecf0f1;
+}
+
+.details {
+  margin-top: 1em;
+  padding: 1em;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+
+.details h3 {
+  margin-top: 0.2em;
+}
+
+.details ul {
+  padding-left: 1.2em;
+  margin-top: 0.4em;
+}
+
+.details li {
+  margin-bottom: 0.6em;
+}
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h1>Kapiteloversigt</h1>
+<div class="sidebar-section">
+<h2 style="background-color: #d1f2eb;" onclick="toggleSection(this)">Del I – Velkommen til Jorden!</h2>
+<ul>
+<li><a onclick="showChapter('kapitel1')" style="background-color: #d1f2eb;">1. Meteorer og meteorkratere</a></li>
+<li><a onclick="showChapter('kapitel2')" style="background-color: #d1f2eb;">2. Jordens indre og vulkanisme</a></li>
+<li><a onclick="showChapter('kapitel3')" style="background-color: #d1f2eb;">3. Pladetektonik og jordskælv</a></li>
+<li><a onclick="showChapter('kapitel4')" style="background-color: #d1f2eb;">4. Bjergarternes kredsløb og FETA</a></li>
+<li><a onclick="showChapter('kapitel5')" style="background-color: #d1f2eb;">5. Hvordan holder Jorden varmen?</a></li>
+<li><a onclick="showChapter('kapitel6')" style="background-color: #d1f2eb;">6. Hvorfor er der ikke palmer i Polen?</a></li>
+<li><a onclick="showChapter('kapitel7')" style="background-color: #d1f2eb;">7. Strømning i havet og havets betydning for klima</a></li>
+</ul>
+</div>
+<div class="sidebar-section">
+<h2 style="background-color: #a9dfbf;" onclick="toggleSection(this)">Del II – Energi og grøn omstilling</h2>
+<ul>
+<li><a onclick="showChapter('kapitel8')" style="background-color: #a9dfbf;">8. Hvad koster dit brusebad?</a></li>
+<li><a onclick="showChapter('kapitel9')" style="background-color: #a9dfbf;">9. Energiens historie...</a></li>
+<li><a onclick="showChapter('kapitel10')" style="background-color: #a9dfbf;">10.  Elektricitet og den grønne omstilling</a></li>
+<li><a onclick="showChapter('kapitel11')" style="background-color: #a9dfbf;">11.  Vindmøller, solceller og ...</a></li>
+<li><a onclick="showChapter('kapitel12')" style="background-color: #a9dfbf;">12.  Er der mangel på råstoffer?</a></li>
+<li><a onclick="showChapter('kapitel13')" style="background-color: #a9dfbf;">13.  Kører du klimavenligt?</a></li>
+<li><a onclick="showChapter('kapitel14')" style="background-color: #a9dfbf;">14.  Bæredygtig produktion</a></li>
+</ul>
+</div>
+<div class="sidebar-section">
+<h2 style="background-color: #aed6f1;" onclick="toggleSection(this)">Del III – Hvad truer os?</h2>
+<ul>
+<li><a onclick="showChapter('kapitel15')" style="background-color: #aed6f1;">15.  Det danske vejr er...</a></li>
+<li><a onclick="showChapter('kapitel16')" style="background-color: #aed6f1;">16.  Klimaforandringer og vejrændringer</a></li>
+<li><a onclick="showChapter('kapitel17')" style="background-color: #aed6f1;">17.  Forsurring af havet</a></li>
+<li><a onclick="showChapter('kapitel18')" style="background-color: #aed6f1;">18.  Klimasikring af byer</a></li>
+<li><a onclick="showChapter('kapitel19')" style="background-color: #aed6f1;">19.  Smeltning af den Grønlandske indlandsis</a></li>
+<li><a onclick="showChapter('kapitel20')" style="background-color: #aed6f1;">20.  Er vulkanen farlig?</a></li>
+<li><a onclick="showChapter('kapitel21')" style="background-color: #aed6f1;">21.  Tsunami og jordskælv</a></li>
+<li><a onclick="showChapter('kapitel22')" style="background-color: #aed6f1;">22.  Tsunami og jordskælv</a></li>
+</ul>
+</div>
+<div class="sidebar-section">
+<h2 style="background-color: #85c1e9;" onclick="toggleSection(this)">Del IV – Landskabet og mennesket</h2>
+<ul>
+<li><a onclick="showChapter('kapitel23')" style="background-color: #85c1e9;">23.  Kyster, bølger og stormflod</a></li>
+<li><a onclick="showChapter('kapitel24')" style="background-color: #85c1e9;">24.  Vindskabte landskaber</a></li>
+<li><a onclick="showChapter('kapitel25')" style="background-color: #85c1e9;">25.  Flodens ressourcer</a></li>
+<li><a onclick="showChapter('kapitel26')" style="background-color: #85c1e9;">26.  Drikkevand, grundvandsstrømning</a></li>
+<li><a onclick="showChapter('kapitel27')" style="background-color: #85c1e9;">27.  Undergrundens råstoffer og naturforvaltning</a></li>
+</ul>
+</div>
+<div class="sidebar-section">
+<h2 style="background-color: #5dade2;" onclick="toggleSection(this)">Del V – Kortlægning og overvågning</h2>
+<ul>
+<li><a onclick="showChapter('kapitel28')" style="background-color: #5dade2;">28.  Kort om kort</a></li>
+<li><a onclick="showChapter('kapitel29')" style="background-color: #5dade2;">29.  Satellitter og Jordobservationer</a></li>
+<li><a onclick="showChapter('kapitel30')" style="background-color: #5dade2;">30.  Seismik og kortlægning af undergrunden</a></li>
+<li><a onclick="showChapter('kapitel31')" style="background-color: #5dade2;">31.  Geoelektriske målinger og grundvandskortlægning</a></li>
+</ul>
+</div>
+<div class="sidebar-section">
+<h2 style="background-color: #2e86c1;" onclick="toggleSection(this)">Del VI – Læs fortiden!</h2>
+<ul>
+<li><a onclick="showChapter('kapitel32')" style="background-color: #2e86c1;">32.  Relativ aldersdatering og tilblivelseshistorier</a></li>
+<li><a onclick="showChapter('kapitel33')" style="background-color: #2e86c1;">33.  Radioaktivitet og absolut aldersdatering</a></li>
+<li><a onclick="showChapter('kapitel34')" style="background-color: #2e86c1;">34.  Kosmologi, stjerner og Big Bang</a></li>
+<li><a onclick="showChapter('kapitel35')" style="background-color: #2e86c1;">35.  Jorden og Livets udvikling</a></li>
+</ul>
+</div>
+
+  </div>
+  <div class="main">
+    <div class="search-container">
+      <input type="text" id="searchInput" onkeyup="filterChapters()" placeholder="Søg i kapitler...">
+    </div>
+
+    <div class="chapter" id="kapitel1" style="background-color: #d1f2eb">
+      <h2>1. Meteorer og meteorkratere</h2>
+      <p class="description">Universets stenede budbringere har ændret Jordens historie. Lær om meteornedslag og deres konsekvenser.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel1_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel1_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel1_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel1_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel1_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel1_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel2" style="background-color: #d1f2eb">
+      <h2>2. Jordens indre og vulkanisme</h2>
+      <p class="description">Vulkanisme er et vindue til Jordens indre. Vi undersøger smelteprocesser, magma og vulkanudbrud.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel2_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel2_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel2_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel2_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel2_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel2_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel3" style="background-color: #d1f2eb">
+      <h2>3. Pladetektonik og jordskælv</h2>
+      <p class="description">Pladetektonik forklarer jordskælv og bjergkæder. Lær om pladers bevægelse og deres indflydelse.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel3_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel3_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel3_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel3_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel3_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel3_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel4" style="background-color: #d1f2eb">
+      <h2>4. Bjergarternes kredsløb og FETA</h2>
+      <p class="description">Bjergarter dannes, omformes og nedbrydes. Få overblik over FETA-processerne og landskabsdannelse.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel4_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel4_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel4_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel4_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel4_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel4_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel5" style="background-color: #d1f2eb">
+      <h2>5. Hvordan holder Jorden varmen?</h2>
+      <p class="description">Jorden holder på varmen gennem drivhuseffekt og kulstofkredsløb. Forstå balancen i klimaet.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel5_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel5_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel5_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel5_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel5_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel5_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel6" style="background-color: #d1f2eb">
+      <h2>6. Hvorfor er der ikke palmer i Polen?</h2>
+      <p class="description">Hvorfor er der ikke palmer i Polen? Se på solindstrålingens vinkel og klimazoner.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel6_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel6_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel6_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel6_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel6_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel6_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel7" style="background-color: #d1f2eb">
+      <h2>7. Strømning i havet og havets betydning for klima</h2>
+      <p class="description">Havstrømme transporterer energi og næring. Golfstrømmen og termohalin cirkulation er centrale.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel7_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel7_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel7_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel7_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel7_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel7_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel8" style="background-color: #a9dfbf">
+      <h2>8. Hvad koster dit brusebad?</h2>
+      <p class="description">Energiforbrug i hjemmet har store konsekvenser. Beregn og forstå energistrømme.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel8_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel8_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel8_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel8_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel8_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel8_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel9" style="background-color: #a9dfbf">
+      <h2>9. Energiens historie...</h2>
+      <p class="description">Energi har formet civilisationen. Fra ild til fossile brændsler og fremtidens løsninger.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel9_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel9_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel9_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel9_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel9_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel9_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel10" style="background-color: #a9dfbf">
+      <h2>10. Elektricitet og den grønne omstilling</h2>
+      <p class="description">Elektricitet og grøn omstilling hænger tæt sammen. Lær om kredsløb og energioverførsel.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel10_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel10_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel10_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel10_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel10_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel10_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel11" style="background-color: #a9dfbf">
+      <h2>11. Vindmøller, solceller og ...</h2>
+      <p class="description">Vedvarende energi fra vind og sol. Forstå teknologien bag og udfordringerne for udbredelse.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel11_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel11_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel11_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel11_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel11_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel11_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel12" style="background-color: #a9dfbf">
+      <h2>12. Er der mangel på råstoffer?</h2>
+      <p class="description">Er der nok råstoffer? Undersøg geologisk dannelse, økonomi og bæredygtighed.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel12_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel12_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel12_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel12_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel12_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel12_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel13" style="background-color: #a9dfbf">
+      <h2>13. Kører du klimavenligt?</h2>
+      <p class="description">Transport og fysik – hvordan kan vi bevæge os klimavenligt?</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel13_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel13_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel13_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel13_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel13_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel13_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel14" style="background-color: #a9dfbf">
+      <h2>14. Bæredygtig produktion</h2>
+      <p class="description">Produkters livscyklus og bæredygtig produktion – fra udvinding til genbrug.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel14_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel14_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel14_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel14_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel14_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel14_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel15" style="background-color: #aed6f1">
+      <h2>15. Det danske vejr er...</h2>
+      <p class="description">Vejret i Danmark styres af frontsystemer, lavtryk og højtryk. Lær meteorologiens grundtræk.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel15_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel15_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel15_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel15_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel15_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel15_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel16" style="background-color: #aed6f1">
+      <h2>16. Klimaforandringer og vejrændringer</h2>
+      <p class="description">Klimaforandringer påvirker vores hverdag. Forstå feedbackmekanismer og fremtidsscenarier.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel16_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel16_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel16_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel16_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel16_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel16_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel17" style="background-color: #aed6f1">
+      <h2>17. Forsurring af havet</h2>
+      <p class="description">Havet optager CO₂ – men det ændrer havets kemi. Undersøg forsuring og konsekvenser.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel17_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel17_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel17_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel17_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel17_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel17_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel18" style="background-color: #aed6f1">
+      <h2>18. Klimasikring af byer</h2>
+      <p class="description">Byer skal sikres mod fremtidens vejr. Grønne tage og skybrudssikring i fokus.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel18_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel18_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel18_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel18_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel18_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel18_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel19" style="background-color: #aed6f1">
+      <h2>19. Smeltning af den Grønlandske indlandsis</h2>
+      <p class="description">Smeltning af Grønlands is påvirker havniveauet. Lær om energibalance og modeller.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel19_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel19_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel19_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel19_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel19_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel19_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel20" style="background-color: #aed6f1">
+      <h2>20. Er vulkanen farlig?</h2>
+      <p class="description">Er vulkanen farlig? Forstå eksplosionstyper, udbrud og risikovurdering.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel20_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel20_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel20_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel20_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel20_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel20_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel21" style="background-color: #aed6f1">
+      <h2>21. Tsunami og jordskælv</h2>
+      <p class="description">Jordskælv og tsunamier starter med pladebevægelser. Triangulering og varsling redder liv.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel21_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel21_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel21_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel21_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel21_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel21_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel22" style="background-color: #aed6f1">
+      <h2>22. Tsunami og jordskælv</h2>
+      <p class="description">Gentagelse: Tsunamier og jordskælv. Fokus på processer og samfundets forberedelse.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel22_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel22_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel22_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel22_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel22_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel22_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel23" style="background-color: #85c1e9">
+      <h2>23. Kyster, bølger og stormflod</h2>
+      <p class="description">Kysterne formes af bølger og stormflod. Se på erosion og kystsikring.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel23_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel23_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel23_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel23_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel23_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel23_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel24" style="background-color: #85c1e9">
+      <h2>24. Vindskabte landskaber</h2>
+      <p class="description">Vinden former landskaber i ørken og ved kyst. Lær om eoliske processer.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel24_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel24_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel24_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel24_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel24_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel24_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel25" style="background-color: #85c1e9">
+      <h2>25. Flodens ressourcer</h2>
+      <p class="description">Floder transporterer sediment og næring. Udnytning og regulering i fokus.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel25_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel25_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel25_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel25_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel25_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel25_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel26" style="background-color: #85c1e9">
+      <h2>26. Drikkevand, grundvandsstrømning</h2>
+      <p class="description">Grundvand dannes og strømmer i undergrunden. Se på udvinding og forvaltning.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel26_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel26_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel26_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel26_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel26_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel26_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel27" style="background-color: #85c1e9">
+      <h2>27. Undergrundens råstoffer og naturforvaltning</h2>
+      <p class="description">Råstoffer fra undergrunden er vigtige – men hvad med miljøet?</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel27_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel27_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel27_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel27_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel27_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel27_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel28" style="background-color: #5dade2">
+      <h2>28. Kort om kort</h2>
+      <p class="description">Kort er modeller af virkeligheden. Lær om symboler, projektion og skala.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel28_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel28_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel28_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel28_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel28_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel28_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel29" style="background-color: #5dade2">
+      <h2>29. Satellitter og Jordobservationer</h2>
+      <p class="description">Satellitter over Jorden ser det hele. Fjernmåling og data giver overblik.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel29_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel29_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel29_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel29_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel29_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel29_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel30" style="background-color: #5dade2">
+      <h2>30. Seismik og kortlægning af undergrunden</h2>
+      <p class="description">Seismik kortlægger det usynlige. Anvendelser i geologi og efterforskning.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel30_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel30_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel30_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel30_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel30_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel30_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel31" style="background-color: #5dade2">
+      <h2>31. Geoelektriske målinger og grundvandskortlægning</h2>
+      <p class="description">Geoelektriske målinger afslører grundvand og forurening. Læs undergrunden elektrisk.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel31_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel31_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel31_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel31_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel31_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel31_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel32" style="background-color: #2e86c1">
+      <h2>32. Relativ aldersdatering og tilblivelseshistorier</h2>
+      <p class="description">Hvad kom først? Læs fortiden i lag og fossiler gennem relativ datering.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel32_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel32_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel32_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel32_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel32_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel32_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel33" style="background-color: #2e86c1">
+      <h2>33. Radioaktivitet og absolut aldersdatering</h2>
+      <p class="description">Radioaktivitet fortæller os alder. Halveringstid og datering af klipper og fossiler.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel33_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel33_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel33_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel33_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel33_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel33_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel34" style="background-color: #2e86c1">
+      <h2>34. Kosmologi, stjerner og Big Bang</h2>
+      <p class="description">Universets historie begynder med Big Bang. Fra stjerner til liv.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel34_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel34_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel34_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel34_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel34_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel34_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chapter" id="kapitel35" style="background-color: #2e86c1">
+      <h2>35. Jorden og Livets udvikling</h2>
+      <p class="description">Livets udvikling følger Jordens forandringer. Se på masseuddøen og evolution.</p>
+      <div class="footer-columns">
+        <div onclick="toggleDetail('kapitel35_1')"><strong>Opgaver og data</strong></div>
+        <div onclick="toggleDetail('kapitel35_2')"><strong>Eksperimenter og feltarbejde</strong></div>
+        <div onclick="toggleDetail('kapitel35_3')"><strong>Webressourcer</strong></div>
+      </div>
+      <div class="details" id="kapitel35_1" style="display:none;">
+        <h3>Opgaver og data</h3>
+        <ul>
+          <li><a href="#">Analyseopgaver med grafer og modeller</a></li>
+          <li><a href="#">Datasæt fra fx DMI, GEUS eller NASA</a></li>
+          <li><a href="#">Spørgsmål til forståelse og anvendelse</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel35_2" style="display:none;">
+        <h3>Eksperimenter og feltarbejde</h3>
+        <ul>
+          <li><a href="#">Praktiske laboratorieforsøg</a></li>
+          <li><a href="#">Feltarbejde med målinger i naturen</a></li>
+          <li><a href="#">Hypoteser og undersøgelsesdesign</a></li>
+        </ul>
+      </div>
+      <div class="details" id="kapitel35_3" style="display:none;">
+        <h3>Webressourcer</h3>
+        <ul>
+          <li><a href="#">Videoer og animationer</a></li>
+          <li><a href="#">Artikler og nyheder fra anerkendte kilder</a></li>
+          <li><a href="#">Interaktive kort og visualiseringer</a></li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+  <script>
+    function showChapter(id) {
+      const chapters = document.querySelectorAll('.chapter');
+      chapters.forEach(chap => chap.style.display = "none");
+      const target = document.getElementById(id);
+      if (target) target.style.display = "block";
+    }
+
+    function filterChapters() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const chapters = document.querySelectorAll('.chapter');
+      chapters.forEach(chapter => {
+        if (chapter.textContent.toLowerCase().includes(input)) {
+          chapter.style.display = "block";
+        } else {
+          chapter.style.display = "none";
+        }
+      });
+    }
+
+    function toggleSection(header) {
+      const list = header.nextElementSibling;
+      const expanded = list.style.display === "block";
+      list.style.display = expanded ? "none" : "block";
+    }
+
+    function toggleDetail(id) {
+      const box = document.getElementById(id);
+      const show = box.style.display !== "block";
+      box.style.display = show ? "block" : "none";
+    }
+  </script>
+</body>
+</html>
