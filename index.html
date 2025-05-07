@@ -6,14 +6,13 @@
   <title>Geovidenskab A – Materialesite</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-
 :root {
-  --bg: #f4f6f8;
-  --sidebar-bg: #2c3e50;
-  --highlight: #1abc9c;
-  --text: #2c3e50;
-  --white: #ffffff;
-  --shadow: rgba(0, 0, 0, 0.05);
+  --bg: #f8fafa;
+  --sidebar-bg: #e2eef0;
+  --highlight: #679d94;
+  --text: #2f3e3e;
+  --chapter-bg: #ffffff;
+  --footer-bg: #eaf3f2;
 }
 
 body {
@@ -28,7 +27,7 @@ body {
 .sidebar {
   width: 280px;
   background-color: var(--sidebar-bg);
-  color: var(--white);
+  color: var(--text);
   position: fixed;
   height: 100vh;
   overflow-y: auto;
@@ -40,19 +39,21 @@ body {
   margin: 0;
   padding: 1em;
   font-size: 1.4em;
+  color: white;
 }
 
 .sidebar a {
   display: block;
   padding: 0.8em 1em;
-  color: var(--white);
+  color: var(--text);
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   cursor: pointer;
 }
 
 .sidebar a:hover {
-  background-color: #16a085;
+  background-color: var(--highlight);
+  color: white;
 }
 
 .main {
@@ -63,10 +64,10 @@ body {
 
 .chapter {
   display: none;
-  background: var(--white);
+  background: var(--chapter-bg);
   padding: 2em;
   border-radius: 8px;
-  box-shadow: 0 4px 10px var(--shadow);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   margin-bottom: 2em;
 }
 
@@ -89,7 +90,7 @@ body {
 .footer-columns div {
   flex: 1;
   min-width: 200px;
-  background-color: var(--bg);
+  background-color: var(--footer-bg);
   border: 1px solid #ccc;
   padding: 1em;
   border-radius: 8px;
@@ -114,49 +115,20 @@ input[type="text"] {
   border-radius: 4px;
 }
 
-
-.sidebar-section {
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-section h2 {
-  margin: 0;
-  padding: 0.8em 1em;
-  font-size: 1em;
-  background-color: var(--highlight);
-  color: black;
-  cursor: pointer;
-  border-top: 1px solid #ddd;
-}
-
 .sidebar-section h2:hover {
-  background-color: #16a085;
-  color: white;
-}
-
-.sidebar-section ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: none;
-}
-
-.sidebar-section ul li a {
-  display: block;
-  padding: 0.6em 1.2em;
-  text-decoration: none;
-  color: black;
+  background-color: var(--highlight) !important;
+  color: white !important;
 }
 
 .sidebar-section ul li a:hover {
-  background-color: #ecf0f1;
+  background-color: var(--highlight);
+  color: white !important;
 }
 
 .details {
   margin-top: 1em;
   padding: 1em;
-  background-color: #ffffff;
+  background-color: var(--footer-bg);
   border-radius: 6px;
   box-shadow: 0 0 6px rgba(0,0,0,0.05);
 }
@@ -173,9 +145,68 @@ input[type="text"] {
 .details li {
   margin-bottom: 0.6em;
 }
-  </style>
+
+.sidebar-section h2 {
+  margin: 0;
+  padding: 0.8em 1em;
+  font-size: 1em;
+  background-color: transparent;
+  color: var(--text);
+  cursor: pointer;
+  border-top: 1px solid #d9d4cc;
+}
+
+.sidebar-section ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+.sidebar-section ul li {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-section ul li a {
+  display: block;
+  padding: 0.6em 1.2em;
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--text);
+}
+
+.sidebar-section ul li a:hover {
+  background-color: var(--highlight);
+  color: white;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-image: url('topbar_bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  z-index: 1000;
+  background-color: #fefcf6;
+}
+body {
+  padding-top: 210px;
+}
+</style>
 </head>
 <body>
+
+<div class="topbar"></div>
+
+
+  </div>
+</div>
+
   <div class="sidebar">
     <h1>Kapiteloversigt</h1>
 <div class="sidebar-section">
@@ -250,7 +281,7 @@ input[type="text"] {
       <input type="text" id="searchInput" onkeyup="filterChapters()" placeholder="Søg i kapitler...">
     </div>
 
-    <div class="chapter" id="kapitel1" style="background-color: #d1f2eb">
+    <div class="chapter" id="kapitel1" style="background-color: #f5f5dc; #d1f2eb">
       <h2>1. Meteorer og meteorkratere</h2>
       <p class="description">Universets stenede budbringere har ændret Jordens historie. Lær om meteornedslag og deres konsekvenser.</p>
       <div class="footer-columns">
@@ -284,7 +315,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel2" style="background-color: #d1f2eb">
+    <div class="chapter" id="kapitel2" style="background-color: #f5f5dc; #d1f2eb">
       <h2>2. Jordens indre og vulkanisme</h2>
       <p class="description">Vulkanisme er et vindue til Jordens indre. Vi undersøger smelteprocesser, magma og vulkanudbrud.</p>
       <div class="footer-columns">
@@ -318,7 +349,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel3" style="background-color: #d1f2eb">
+    <div class="chapter" id="kapitel3" style="background-color: #f5f5dc; #d1f2eb">
       <h2>3. Pladetektonik og jordskælv</h2>
       <p class="description">Pladetektonik forklarer jordskælv og bjergkæder. Lær om pladers bevægelse og deres indflydelse.</p>
       <div class="footer-columns">
@@ -352,7 +383,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel4" style="background-color: #d1f2eb">
+    <div class="chapter" id="kapitel4" style="background-color: #f5f5dc; #d1f2eb">
       <h2>4. Bjergarternes kredsløb og FETA</h2>
       <p class="description">Bjergarter dannes, omformes og nedbrydes. Få overblik over FETA-processerne og landskabsdannelse.</p>
       <div class="footer-columns">
@@ -386,7 +417,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel5" style="background-color: #d1f2eb">
+    <div class="chapter" id="kapitel5" style="background-color: #f5f5dc; #d1f2eb">
       <h2>5. Hvordan holder Jorden varmen?</h2>
       <p class="description">Jorden holder på varmen gennem drivhuseffekt og kulstofkredsløb. Forstå balancen i klimaet.</p>
       <div class="footer-columns">
@@ -420,7 +451,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel6" style="background-color: #d1f2eb">
+    <div class="chapter" id="kapitel6" style="background-color: #f5f5dc; #d1f2eb">
       <h2>6. Hvorfor er der ikke palmer i Polen?</h2>
       <p class="description">Hvorfor er der ikke palmer i Polen? Se på solindstrålingens vinkel og klimazoner.</p>
       <div class="footer-columns">
@@ -454,7 +485,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel7" style="background-color: #d1f2eb">
+    <div class="chapter" id="kapitel7" style="background-color: #f5f5dc; #d1f2eb">
       <h2>7. Strømning i havet og havets betydning for klima</h2>
       <p class="description">Havstrømme transporterer energi og næring. Golfstrømmen og termohalin cirkulation er centrale.</p>
       <div class="footer-columns">
@@ -488,7 +519,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel8" style="background-color: #a9dfbf">
+    <div class="chapter" id="kapitel8" style="background-color: #e6ccb2; #a9dfbf">
       <h2>8. Hvad koster dit brusebad?</h2>
       <p class="description">Energiforbrug i hjemmet har store konsekvenser. Beregn og forstå energistrømme.</p>
       <div class="footer-columns">
@@ -522,7 +553,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel9" style="background-color: #a9dfbf">
+    <div class="chapter" id="kapitel9" style="background-color: #e6ccb2; #a9dfbf">
       <h2>9. Energiens historie...</h2>
       <p class="description">Energi har formet civilisationen. Fra ild til fossile brændsler og fremtidens løsninger.</p>
       <div class="footer-columns">
@@ -556,7 +587,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel10" style="background-color: #a9dfbf">
+    <div class="chapter" id="kapitel10" style="background-color: #e6ccb2; #a9dfbf">
       <h2>10. Elektricitet og den grønne omstilling</h2>
       <p class="description">Elektricitet og grøn omstilling hænger tæt sammen. Lær om kredsløb og energioverførsel.</p>
       <div class="footer-columns">
@@ -590,7 +621,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel11" style="background-color: #a9dfbf">
+    <div class="chapter" id="kapitel11" style="background-color: #e6ccb2; #a9dfbf">
       <h2>11. Vindmøller, solceller og ...</h2>
       <p class="description">Vedvarende energi fra vind og sol. Forstå teknologien bag og udfordringerne for udbredelse.</p>
       <div class="footer-columns">
@@ -624,7 +655,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel12" style="background-color: #a9dfbf">
+    <div class="chapter" id="kapitel12" style="background-color: #e6ccb2; #a9dfbf">
       <h2>12. Er der mangel på råstoffer?</h2>
       <p class="description">Er der nok råstoffer? Undersøg geologisk dannelse, økonomi og bæredygtighed.</p>
       <div class="footer-columns">
@@ -658,7 +689,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel13" style="background-color: #a9dfbf">
+    <div class="chapter" id="kapitel13" style="background-color: #e6ccb2; #a9dfbf">
       <h2>13. Kører du klimavenligt?</h2>
       <p class="description">Transport og fysik – hvordan kan vi bevæge os klimavenligt?</p>
       <div class="footer-columns">
@@ -692,7 +723,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel14" style="background-color: #a9dfbf">
+    <div class="chapter" id="kapitel14" style="background-color: #e6ccb2; #a9dfbf">
       <h2>14. Bæredygtig produktion</h2>
       <p class="description">Produkters livscyklus og bæredygtig produktion – fra udvinding til genbrug.</p>
       <div class="footer-columns">
@@ -726,7 +757,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel15" style="background-color: #aed6f1">
+    <div class="chapter" id="kapitel15" style="background-color: #d6ae7b; #aed6f1">
       <h2>15. Det danske vejr er...</h2>
       <p class="description">Vejret i Danmark styres af frontsystemer, lavtryk og højtryk. Lær meteorologiens grundtræk.</p>
       <div class="footer-columns">
@@ -760,7 +791,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel16" style="background-color: #aed6f1">
+    <div class="chapter" id="kapitel16" style="background-color: #d6ae7b; #aed6f1">
       <h2>16. Klimaforandringer og vejrændringer</h2>
       <p class="description">Klimaforandringer påvirker vores hverdag. Forstå feedbackmekanismer og fremtidsscenarier.</p>
       <div class="footer-columns">
@@ -794,7 +825,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel17" style="background-color: #aed6f1">
+    <div class="chapter" id="kapitel17" style="background-color: #d6ae7b; #aed6f1">
       <h2>17. Forsurring af havet</h2>
       <p class="description">Havet optager CO₂ – men det ændrer havets kemi. Undersøg forsuring og konsekvenser.</p>
       <div class="footer-columns">
@@ -828,7 +859,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel18" style="background-color: #aed6f1">
+    <div class="chapter" id="kapitel18" style="background-color: #d6ae7b; #aed6f1">
       <h2>18. Klimasikring af byer</h2>
       <p class="description">Byer skal sikres mod fremtidens vejr. Grønne tage og skybrudssikring i fokus.</p>
       <div class="footer-columns">
@@ -862,7 +893,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel19" style="background-color: #aed6f1">
+    <div class="chapter" id="kapitel19" style="background-color: #d6ae7b; #aed6f1">
       <h2>19. Smeltning af den Grønlandske indlandsis</h2>
       <p class="description">Smeltning af Grønlands is påvirker havniveauet. Lær om energibalance og modeller.</p>
       <div class="footer-columns">
@@ -896,7 +927,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel20" style="background-color: #aed6f1">
+    <div class="chapter" id="kapitel20" style="background-color: #d6ae7b; #aed6f1">
       <h2>20. Er vulkanen farlig?</h2>
       <p class="description">Er vulkanen farlig? Forstå eksplosionstyper, udbrud og risikovurdering.</p>
       <div class="footer-columns">
@@ -930,7 +961,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel21" style="background-color: #aed6f1">
+    <div class="chapter" id="kapitel21" style="background-color: #d6ae7b; #aed6f1">
       <h2>21. Tsunami og jordskælv</h2>
       <p class="description">Jordskælv og tsunamier starter med pladebevægelser. Triangulering og varsling redder liv.</p>
       <div class="footer-columns">
@@ -964,7 +995,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel22" style="background-color: #aed6f1">
+    <div class="chapter" id="kapitel22" style="background-color: #d6ae7b; #aed6f1">
       <h2>22. Tsunami og jordskælv</h2>
       <p class="description">Gentagelse: Tsunamier og jordskælv. Fokus på processer og samfundets forberedelse.</p>
       <div class="footer-columns">
@@ -998,7 +1029,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel23" style="background-color: #85c1e9">
+    <div class="chapter" id="kapitel23" style="background-color: #c1a57b; #85c1e9">
       <h2>23. Kyster, bølger og stormflod</h2>
       <p class="description">Kysterne formes af bølger og stormflod. Se på erosion og kystsikring.</p>
       <div class="footer-columns">
@@ -1032,7 +1063,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel24" style="background-color: #85c1e9">
+    <div class="chapter" id="kapitel24" style="background-color: #c1a57b; #85c1e9">
       <h2>24. Vindskabte landskaber</h2>
       <p class="description">Vinden former landskaber i ørken og ved kyst. Lær om eoliske processer.</p>
       <div class="footer-columns">
@@ -1066,7 +1097,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel25" style="background-color: #85c1e9">
+    <div class="chapter" id="kapitel25" style="background-color: #c1a57b; #85c1e9">
       <h2>25. Flodens ressourcer</h2>
       <p class="description">Floder transporterer sediment og næring. Udnytning og regulering i fokus.</p>
       <div class="footer-columns">
@@ -1100,7 +1131,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel26" style="background-color: #85c1e9">
+    <div class="chapter" id="kapitel26" style="background-color: #c1a57b; #85c1e9">
       <h2>26. Drikkevand, grundvandsstrømning</h2>
       <p class="description">Grundvand dannes og strømmer i undergrunden. Se på udvinding og forvaltning.</p>
       <div class="footer-columns">
@@ -1134,7 +1165,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel27" style="background-color: #85c1e9">
+    <div class="chapter" id="kapitel27" style="background-color: #c1a57b; #85c1e9">
       <h2>27. Undergrundens råstoffer og naturforvaltning</h2>
       <p class="description">Råstoffer fra undergrunden er vigtige – men hvad med miljøet?</p>
       <div class="footer-columns">
@@ -1168,7 +1199,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel28" style="background-color: #5dade2">
+    <div class="chapter" id="kapitel28" style="background-color: #a67b5b; #5dade2">
       <h2>28. Kort om kort</h2>
       <p class="description">Kort er modeller af virkeligheden. Lær om symboler, projektion og skala.</p>
       <div class="footer-columns">
@@ -1202,7 +1233,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel29" style="background-color: #5dade2">
+    <div class="chapter" id="kapitel29" style="background-color: #a67b5b; #5dade2">
       <h2>29. Satellitter og Jordobservationer</h2>
       <p class="description">Satellitter over Jorden ser det hele. Fjernmåling og data giver overblik.</p>
       <div class="footer-columns">
@@ -1236,7 +1267,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel30" style="background-color: #5dade2">
+    <div class="chapter" id="kapitel30" style="background-color: #a67b5b; #5dade2">
       <h2>30. Seismik og kortlægning af undergrunden</h2>
       <p class="description">Seismik kortlægger det usynlige. Anvendelser i geologi og efterforskning.</p>
       <div class="footer-columns">
@@ -1270,7 +1301,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel31" style="background-color: #5dade2">
+    <div class="chapter" id="kapitel31" style="background-color: #a67b5b; #5dade2">
       <h2>31. Geoelektriske målinger og grundvandskortlægning</h2>
       <p class="description">Geoelektriske målinger afslører grundvand og forurening. Læs undergrunden elektrisk.</p>
       <div class="footer-columns">
@@ -1304,7 +1335,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel32" style="background-color: #2e86c1">
+    <div class="chapter" id="kapitel32" style="background-color: #8c5e3c; #2e86c1">
       <h2>32. Relativ aldersdatering og tilblivelseshistorier</h2>
       <p class="description">Hvad kom først? Læs fortiden i lag og fossiler gennem relativ datering.</p>
       <div class="footer-columns">
@@ -1338,7 +1369,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel33" style="background-color: #2e86c1">
+    <div class="chapter" id="kapitel33" style="background-color: #8c5e3c; #2e86c1">
       <h2>33. Radioaktivitet og absolut aldersdatering</h2>
       <p class="description">Radioaktivitet fortæller os alder. Halveringstid og datering af klipper og fossiler.</p>
       <div class="footer-columns">
@@ -1372,7 +1403,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel34" style="background-color: #2e86c1">
+    <div class="chapter" id="kapitel34" style="background-color: #8c5e3c; #2e86c1">
       <h2>34. Kosmologi, stjerner og Big Bang</h2>
       <p class="description">Universets historie begynder med Big Bang. Fra stjerner til liv.</p>
       <div class="footer-columns">
@@ -1406,7 +1437,7 @@ input[type="text"] {
       </div>
     </div>
     
-    <div class="chapter" id="kapitel35" style="background-color: #2e86c1">
+    <div class="chapter" id="kapitel35" style="background-color: #8c5e3c; #2e86c1">
       <h2>35. Jorden og Livets udvikling</h2>
       <p class="description">Livets udvikling følger Jordens forandringer. Se på masseuddøen og evolution.</p>
       <div class="footer-columns">
