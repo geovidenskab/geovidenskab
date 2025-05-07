@@ -9,7 +9,7 @@
 :root {
   --bg: #f8fafa;
   --sidebar-bg: #e2eef0;
-  --highlight: #679d94;
+  --highlight: #a3ccc3;
   --text: #2f3e3e;
   --chapter-bg: #ffffff;
   --footer-bg: #eaf3f2;
@@ -23,7 +23,6 @@ body {
   display: flex;
   min-height: 100vh;
 }
-
 .sidebar {
   width: 280px;
   background-color: var(--sidebar-bg);
@@ -33,15 +32,6 @@ body {
   overflow-y: auto;
   padding-bottom: 2em;
 }
-
-.sidebar h1 {
-  background-color: var(--highlight);
-  margin: 0;
-  padding: 1em;
-  font-size: 1.4em;
-  color: white;
-}
-
 .sidebar a {
   display: block;
   padding: 0.8em 1em;
@@ -50,18 +40,15 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   cursor: pointer;
 }
-
 .sidebar a:hover {
-  background-color: var(--highlight);
+  background-color: #23433f;
   color: white;
 }
-
 .main {
   margin-left: 280px;
   padding: 2em;
   flex-grow: 1;
 }
-
 .chapter {
   display: none;
   background: var(--chapter-bg);
@@ -70,23 +57,15 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   margin-bottom: 2em;
 }
-
 .chapter h2 {
-  color: var(--highlight);
+  color: #23433f;
 }
-
-.chapter .description {
-  font-style: italic;
-  margin-bottom: 1.5em;
-}
-
 .footer-columns {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
   margin-top: 2em;
 }
-
 .footer-columns div {
   flex: 1;
   min-width: 200px;
@@ -97,53 +76,9 @@ body {
   text-align: center;
   font-weight: bold;
 }
-
 .footer-columns div a {
   color: var(--text);
   text-decoration: none;
-}
-
-.search-container {
-  margin-bottom: 2em;
-}
-
-input[type="text"] {
-  width: 100%;
-  padding: 0.6em;
-  font-size: 1em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.sidebar-section h2:hover {
-  background-color: var(--highlight) !important;
-  color: white !important;
-}
-
-.sidebar-section ul li a:hover {
-  background-color: var(--highlight);
-  color: white !important;
-}
-
-.details {
-  margin-top: 1em;
-  padding: 1em;
-  background-color: var(--footer-bg);
-  border-radius: 6px;
-  box-shadow: 0 0 6px rgba(0,0,0,0.05);
-}
-
-.details h3 {
-  margin-top: 0.2em;
-}
-
-.details ul {
-  padding-left: 1.2em;
-  margin-top: 0.4em;
-}
-
-.details li {
-  margin-bottom: 0.6em;
 }
 
 .sidebar-section h2 {
@@ -155,19 +90,12 @@ input[type="text"] {
   cursor: pointer;
   border-top: 1px solid #d9d4cc;
 }
-
 .sidebar-section ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: none;
 }
-
-.sidebar-section ul li {
-  margin: 0;
-  padding: 0;
-}
-
 .sidebar-section ul li a {
   display: block;
   padding: 0.6em 1.2em;
@@ -175,7 +103,6 @@ input[type="text"] {
   background-color: transparent;
   color: var(--text);
 }
-
 .sidebar-section ul li a:hover {
   background-color: var(--highlight);
   color: white;
@@ -197,11 +124,33 @@ input[type="text"] {
 body {
   padding-top: 210px;
 }
+
+@media (max-width: 900px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+  }
+  .main {
+    margin-left: 0;
+    padding: 1.5em;
+  }
+  .topbar {
+    height: 140px;
+  }
+  body {
+    padding-top: 150px;
+  }
+  .footer-columns {
+    flex-direction: column;
+  }
+}
 </style>
 </head>
 <body>
 
-<div class="topbar"></div>
+<a href="index.html" style="text-decoration:none;"><div class="topbar"></div></a>
 
 
   </div>
